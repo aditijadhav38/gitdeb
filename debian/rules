@@ -1,0 +1,16 @@
+#!/usr/bin/make -f
+# -*- makefile -*-
+INSTDIR_BASE=$(shell pwd)/debian/hellopsl
+PREFIX=/opt/hellopsl/
+INSTDIR=$(INSTDIR_BASE)$(PREFIX)	
+# Uncomment this to turn on verbose mode.
+#export DH_VERBOSE=1
+
+%:
+	dh $@
+override_dh_install:
+	gcc hello.c -o test
+	mkdir -p $(INSTDIR)
+	cp test $(INSTDIR)
+	/bin/chmod +x $(INSTDIR)test
+ 
